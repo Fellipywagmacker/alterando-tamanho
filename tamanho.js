@@ -1,17 +1,44 @@
 let tamanho = 2;
-function altPalavra() {
-    h1 = document.querySelector('h1');
-    h1.style.fontSize = `${tamanho}em`;
+let titulo = document.querySelector("h1");
+if (titulo == null){
+    titulo = document.querySelector("h2");
+    if (titulo == null){
+        titulo = document.querySelector("h3");
+        if (titulo == null){
+            titulo = document.querySelector("h4");
+            if (titulo == null){
+                titulo = document.querySelector("h5");
+                if (titulo == null){
+                    titulo = document.querySelector("h6");
+                }
+            }
+        }
+    }
 }
-
-function aumPalvra() {
-    tamanho += 0.5;
-    altPalavra();
+if (titulo != null){
+    botoes();
 }
+function atualiza() {
+    titulo.style.fontSize = `${tamanho}em`
+}
+function aumPalavra() {
+    if (tamanho < 7){
+    tamanho += 0.25;
+    atualiza();
+}}
 
 function dimPalavra() {
-    if (tamanho > 0) {
-    tamanho -= 0.5;
-    altPalavra();
-    }
+    if (tamanho > 1) {
+        tamanho -= 0.25;
+    atualiza();
+}}
+function botoes(){ 
+cresce = document.createElement("button") ;
+cresce.setAttribute("onclick","aumPalavra()")
+dimunui = document.createElement("button");
+dimunui.setAttribute("onclick","dimPalavra()")
+cresce.textContent = "+";
+dimunui.textContent = "-";
+document.body.prepend(cresce);
+document.body.append(dimunui);
 }
